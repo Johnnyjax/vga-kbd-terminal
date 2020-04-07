@@ -1,0 +1,28 @@
+
+State Machine - |vga_kbd_txt_top|kb_code:kb_code_unit|state_reg
+Name state_reg.waste_cycle state_reg.get_code state_reg.init state_reg.typematic state_reg.wait_brk 
+state_reg.wait_brk 0 0 0 0 0 
+state_reg.typematic 0 0 0 1 1 
+state_reg.init 0 0 1 0 1 
+state_reg.get_code 0 1 0 0 1 
+state_reg.waste_cycle 1 0 0 0 1 
+
+State Machine - |vga_kbd_txt_top|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg
+Name state_reg.load state_reg.dps state_reg.idle 
+state_reg.idle 0 0 0 
+state_reg.dps 0 1 1 
+state_reg.load 1 0 1 
+
+State Machine - |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|state_reg
+Name state_reg.wait1 state_reg.one state_reg.wait0 state_reg.zero 
+state_reg.zero 0 0 0 0 
+state_reg.wait0 0 0 1 1 
+state_reg.one 0 1 0 1 
+state_reg.wait1 1 0 0 1 
+
+State Machine - |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|state_reg
+Name state_reg.wait1 state_reg.one state_reg.wait0 state_reg.zero 
+state_reg.zero 0 0 0 0 
+state_reg.wait0 0 0 1 1 
+state_reg.one 0 1 0 1 
+state_reg.wait1 1 0 0 1 

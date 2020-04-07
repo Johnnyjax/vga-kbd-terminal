@@ -1,0 +1,894 @@
+Analysis & Synthesis report for vga_kbd_txt
+Tue Jan 21 05:46:50 2020
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |vga_kbd_txt_top|kb_code:kb_code_unit|state_reg
+ 10. State Machine - |vga_kbd_txt_top|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg
+ 11. State Machine - |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|state_reg
+ 12. State Machine - |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|state_reg
+ 13. Registers Removed During Synthesis
+ 14. Removed Registers Triggering Further Register Optimizations
+ 15. General Register Statistics
+ 16. Inverted Register Statistics
+ 17. Registers Added for RAM Pass-Through Logic
+ 18. Registers Packed Into Inferred Megafunctions
+ 19. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 20. Source assignments for vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0|altsyncram_4ml1:auto_generated
+ 21. Source assignments for vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0|altsyncram_cp01:auto_generated
+ 22. Parameter Settings for User Entity Instance: vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram
+ 23. Parameter Settings for User Entity Instance: kb_code:kb_code_unit
+ 24. Parameter Settings for User Entity Instance: kb_code:kb_code_unit|fifo:fifo_key_unit
+ 25. Parameter Settings for Inferred Entity Instance: vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0
+ 26. Parameter Settings for Inferred Entity Instance: vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0
+ 27. altsyncram Parameter Settings by Entity Instance
+ 28. Port Connectivity Checks: "key2ascii:key2a_unit"
+ 29. Port Connectivity Checks: "kb_code:kb_code_unit|fifo:fifo_key_unit"
+ 30. Port Connectivity Checks: "kb_code:kb_code_unit|ps2_rx:ps2_rx_unit"
+ 31. Port Connectivity Checks: "vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram"
+ 32. Port Connectivity Checks: "vga_kbd_txt:text_gen_unit|debounce:debounce_unit1"
+ 33. Port Connectivity Checks: "vga_kbd_txt:text_gen_unit|debounce:debounce_unit0"
+ 34. Elapsed Time Per Partition
+ 35. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Jan 21 05:46:50 2020           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; vga_kbd_txt                                     ;
+; Top-level Entity Name              ; vga_kbd_txt_top                                 ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 395                                             ;
+;     Total combinational functions  ; 289                                             ;
+;     Dedicated logic registers      ; 171                                             ;
+; Total registers                    ; 171                                             ;
+; Total pins                         ; 26                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 45,056                                          ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C20F484C7       ;                    ;
+; Top-level entity name                                                      ; vga_kbd_txt_top    ; vga_kbd_txt        ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                         ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                     ; Library ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
+; altera_dual_port_ram_sync.vhd    ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/altera_dual_port_ram_sync.vhd ;         ;
+; font_rom.vhd                     ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/font_rom.vhd                  ;         ;
+; vga_kbd_txt_top.vhd              ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/vga_kbd_txt_top.vhd           ;         ;
+; vga_sync.vhd                     ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/vga_sync.vhd                  ;         ;
+; vga_kbd_txt.vhd                  ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/vga_kbd_txt.vhd               ;         ;
+; fifo.vhd                         ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/fifo.vhd                      ;         ;
+; kb_code.vhd                      ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/kb_code.vhd                   ;         ;
+; ps2_rx.vhd                       ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/ps2_rx.vhd                    ;         ;
+; key2ascii.vhd                    ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/key2ascii.vhd                 ;         ;
+; debounce.vhd                     ; yes             ; User VHDL File               ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/debounce.vhd                  ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf                 ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc          ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc                    ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc                 ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc                 ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc                  ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc                     ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc                     ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc                   ;         ;
+; db/altsyncram_4ml1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/db/altsyncram_4ml1.tdf        ;         ;
+; db/altsyncram_cp01.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/John/Documents/myFpgaProjects/vga_kbd_txt/db/altsyncram_cp01.tdf        ;         ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary            ;
++---------------------------------------------+----------+
+; Resource                                    ; Usage    ;
++---------------------------------------------+----------+
+; Estimated Total logic elements              ; 395      ;
+;                                             ;          ;
+; Total combinational functions               ; 289      ;
+; Logic element usage by number of LUT inputs ;          ;
+;     -- 4 input functions                    ; 193      ;
+;     -- 3 input functions                    ; 49       ;
+;     -- <=2 input functions                  ; 47       ;
+;                                             ;          ;
+; Logic elements by mode                      ;          ;
+;     -- normal mode                          ; 261      ;
+;     -- arithmetic mode                      ; 28       ;
+;                                             ;          ;
+; Total registers                             ; 171      ;
+;     -- Dedicated logic registers            ; 171      ;
+;     -- I/O registers                        ; 0        ;
+;                                             ;          ;
+; I/O pins                                    ; 26       ;
+; Total memory bits                           ; 45056    ;
+; Embedded Multiplier 9-bit elements          ; 0        ;
+; Maximum fan-out node                        ; CLOCK_50 ;
+; Maximum fan-out                             ; 186      ;
+; Total fan-out                               ; 1837     ;
+; Average fan-out                             ; 3.67     ;
++---------------------------------------------+----------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                          ;
++----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                ; Library Name ;
++----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |vga_kbd_txt_top                             ; 289 (1)           ; 171 (2)      ; 45056       ; 0            ; 0       ; 0         ; 26   ; 0            ; |vga_kbd_txt_top                                                                                                                   ; work         ;
+;    |kb_code:kb_code_unit|                    ; 93 (45)           ; 77 (13)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|kb_code:kb_code_unit                                                                                              ; work         ;
+;       |fifo:fifo_key_unit|                   ; 29 (29)           ; 38 (38)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|kb_code:kb_code_unit|fifo:fifo_key_unit                                                                           ; work         ;
+;       |ps2_rx:ps2_rx_unit|                   ; 19 (19)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit                                                                           ; work         ;
+;    |key2ascii:key2a_unit|                    ; 36 (36)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|key2ascii:key2a_unit                                                                                              ; work         ;
+;    |vga_kbd_txt:text_gen_unit|               ; 118 (103)         ; 69 (37)      ; 45056       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit                                                                                         ; work         ;
+;       |altera_dual_port_ram_sync:video_ram|  ; 15 (15)           ; 32 (32)      ; 28672       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram                                                     ; work         ;
+;          |altsyncram:ram_rtl_0|              ; 0 (0)             ; 0 (0)        ; 28672       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0                                ; work         ;
+;             |altsyncram_4ml1:auto_generated| ; 0 (0)             ; 0 (0)        ; 28672       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0|altsyncram_4ml1:auto_generated ; work         ;
+;       |font_rom:font_unit|                   ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|font_rom:font_unit                                                                      ; work         ;
+;          |altsyncram:Mux7_rtl_0|             ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0                                                ; work         ;
+;             |altsyncram_cp01:auto_generated| ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0|altsyncram_cp01:auto_generated                 ; work         ;
+;    |vga_sync:vga_sync_unit|                  ; 41 (41)           ; 23 (23)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_kbd_txt_top|vga_sync:vga_sync_unit                                                                                            ; work         ;
++----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                                                ;
++------------------------------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+-------+--------------------------------------+
+; Name                                                                                                                         ; Type ; Mode           ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF                                  ;
++------------------------------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+-------+--------------------------------------+
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0|altsyncram_4ml1:auto_generated|ALTSYNCRAM ; AUTO ; True Dual Port ; 4096         ; 7            ; 4096         ; 7            ; 28672 ; None                                 ;
+; vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0|altsyncram_cp01:auto_generated|ALTSYNCRAM                 ; AUTO ; ROM            ; 2048         ; 8            ; --           ; --           ; 16384 ; vga_kbd_txt.vga_kbd_txt_top0.rtl.mif ;
++------------------------------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+-------+--------------------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |vga_kbd_txt_top|kb_code:kb_code_unit|state_reg                                                                ;
++-----------------------+-----------------------+--------------------+----------------+---------------------+--------------------+
+; Name                  ; state_reg.waste_cycle ; state_reg.get_code ; state_reg.init ; state_reg.typematic ; state_reg.wait_brk ;
++-----------------------+-----------------------+--------------------+----------------+---------------------+--------------------+
+; state_reg.wait_brk    ; 0                     ; 0                  ; 0              ; 0                   ; 0                  ;
+; state_reg.typematic   ; 0                     ; 0                  ; 0              ; 1                   ; 1                  ;
+; state_reg.init        ; 0                     ; 0                  ; 1              ; 0                   ; 1                  ;
+; state_reg.get_code    ; 0                     ; 1                  ; 0              ; 0                   ; 1                  ;
+; state_reg.waste_cycle ; 1                     ; 0                  ; 0              ; 0                   ; 1                  ;
++-----------------------+-----------------------+--------------------+----------------+---------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------+
+; State Machine - |vga_kbd_txt_top|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_reg ;
++----------------+----------------+---------------+----------------------------------+
+; Name           ; state_reg.load ; state_reg.dps ; state_reg.idle                   ;
++----------------+----------------+---------------+----------------------------------+
+; state_reg.idle ; 0              ; 0             ; 0                                ;
+; state_reg.dps  ; 0              ; 1             ; 1                                ;
+; state_reg.load ; 1              ; 0             ; 1                                ;
++----------------+----------------+---------------+----------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------+
+; State Machine - |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|state_reg ;
++-----------------+-----------------+---------------+-----------------+------------------------+
+; Name            ; state_reg.wait1 ; state_reg.one ; state_reg.wait0 ; state_reg.zero         ;
++-----------------+-----------------+---------------+-----------------+------------------------+
+; state_reg.zero  ; 0               ; 0             ; 0               ; 0                      ;
+; state_reg.wait0 ; 0               ; 0             ; 1               ; 1                      ;
+; state_reg.one   ; 0               ; 1             ; 0               ; 1                      ;
+; state_reg.wait1 ; 1               ; 0             ; 0               ; 1                      ;
++-----------------+-----------------+---------------+-----------------+------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------+
+; State Machine - |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|state_reg ;
++-----------------+-----------------+---------------+-----------------+------------------------+
+; Name            ; state_reg.wait1 ; state_reg.one ; state_reg.wait0 ; state_reg.zero         ;
++-----------------+-----------------+---------------+-----------------+------------------------+
+; state_reg.zero  ; 0               ; 0             ; 0               ; 0                      ;
+; state_reg.wait0 ; 0               ; 0             ; 1               ; 1                      ;
+; state_reg.one   ; 0               ; 1             ; 0               ; 1                      ;
+; state_reg.wait1 ; 1               ; 0             ; 0               ; 1                      ;
++-----------------+-----------------+---------------+-----------------+------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                            ;
++------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+; Register name                                                                ; Reason for Removal                                                                             ;
++------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[4]  ; Merged with vga_kbd_txt:text_gen_unit|pix_x1_reg[7]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[3]  ; Merged with vga_kbd_txt:text_gen_unit|pix_x1_reg[6]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[2]  ; Merged with vga_kbd_txt:text_gen_unit|pix_x1_reg[5]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[1]  ; Merged with vga_kbd_txt:text_gen_unit|pix_x1_reg[4]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[0]  ; Merged with vga_kbd_txt:text_gen_unit|pix_x1_reg[3]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[11] ; Merged with vga_kbd_txt:text_gen_unit|pix_y1_reg[8]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[10] ; Merged with vga_kbd_txt:text_gen_unit|pix_y1_reg[7]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[9]  ; Merged with vga_kbd_txt:text_gen_unit|pix_y1_reg[6]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[8]  ; Merged with vga_kbd_txt:text_gen_unit|pix_y1_reg[5]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[7]  ; Merged with vga_kbd_txt:text_gen_unit|pix_y1_reg[4]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[5]  ; Merged with vga_kbd_txt:text_gen_unit|pix_x1_reg[8]                                            ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_b_reg[6]  ; Merged with vga_kbd_txt:text_gen_unit|pix_x1_reg[9]                                            ;
+; rgb_reg[2]                                                                   ; Merged with rgb_reg[0]                                                                         ;
+; vga_kbd_txt:text_gen_unit|pix_y2_reg[0]                                      ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|pix_y1_reg[0]                                      ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|pix_x1_reg[3]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[2]  ;
+; vga_kbd_txt:text_gen_unit|pix_x1_reg[4]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[4]  ;
+; vga_kbd_txt:text_gen_unit|pix_x1_reg[5]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[6]  ;
+; vga_kbd_txt:text_gen_unit|pix_x1_reg[6]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[8]  ;
+; vga_kbd_txt:text_gen_unit|pix_x1_reg[7]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[10] ;
+; vga_kbd_txt:text_gen_unit|pix_x1_reg[8]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[12] ;
+; vga_kbd_txt:text_gen_unit|pix_x1_reg[9]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[14] ;
+; vga_kbd_txt:text_gen_unit|pix_y1_reg[4]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[16] ;
+; vga_kbd_txt:text_gen_unit|pix_y1_reg[5]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[18] ;
+; vga_kbd_txt:text_gen_unit|pix_y1_reg[6]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[20] ;
+; vga_kbd_txt:text_gen_unit|pix_y1_reg[7]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[22] ;
+; vga_kbd_txt:text_gen_unit|pix_y1_reg[8]                                      ; Merged with vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[24] ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|q_reg[0..20]               ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|q_reg[0..20]               ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|state_reg.zero             ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|state_reg.wait0            ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|state_reg.one              ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|state_reg.wait1            ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|state_reg.zero             ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|state_reg.wait0            ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|state_reg.one              ; Lost fanout                                                                                    ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|state_reg.wait1            ; Lost fanout                                                                                    ;
+; Total Number of Removed Registers = 77                                       ;                                                                                                ;
++------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                   ;
++------------------------------------------------------------+--------------------+-------------------------------------------------------------+
+; Register name                                              ; Reason for Removal ; Registers Removed due to This Register                      ;
++------------------------------------------------------------+--------------------+-------------------------------------------------------------+
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|q_reg[0] ; Lost Fanouts       ; vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|q_reg[1], ;
+;                                                            ;                    ; vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|q_reg[2], ;
+;                                                            ;                    ; vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|q_reg[3]  ;
+; vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|q_reg[0] ; Lost Fanouts       ; vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|q_reg[1], ;
+;                                                            ;                    ; vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|q_reg[2], ;
+;                                                            ;                    ; vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|q_reg[3]  ;
+; vga_kbd_txt:text_gen_unit|pix_y2_reg[0]                    ; Lost Fanouts       ; vga_kbd_txt:text_gen_unit|pix_y1_reg[0]                     ;
++------------------------------------------------------------+--------------------+-------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 171   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 100   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 86    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------+
+; Inverted Register Statistics                                ;
++---------------------------------------------------+---------+
+; Inverted Register                                 ; Fan out ;
++---------------------------------------------------+---------+
+; kb_code:kb_code_unit|fifo:fifo_key_unit|empty_reg ; 8       ;
+; Total number of inverted registers = 1            ;         ;
++---------------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Added for RAM Pass-Through Logic                                                                                                                   ;
++------------------------------------------------------------------------------------+-------------------------------------------------------------------------+
+; Register Name                                                                      ; RAM Name                                                                ;
++------------------------------------------------------------------------------------+-------------------------------------------------------------------------+
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[0]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[1]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[2]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[3]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[4]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[5]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[6]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[7]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[8]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[9]  ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[10] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[11] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[12] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[13] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[14] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[15] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[16] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[17] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[18] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[19] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[20] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[21] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[22] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[23] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[24] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[25] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[26] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[27] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[28] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[29] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[30] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0_bypass[31] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ;
++------------------------------------------------------------------------------------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                                                                                                     ;
++---------------------------------------------------------------------------------+-------------------------------------------------------------------------+------+
+; Register Name                                                                   ; Megafunction                                                            ; Type ;
++---------------------------------------------------------------------------------+-------------------------------------------------------------------------+------+
+; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|addr_a_reg[0..11] ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0 ; RAM  ;
+; vga_kbd_txt:text_gen_unit|font_rom:font_unit|data_reg[0..7]                     ; vga_kbd_txt:text_gen_unit|font_rom:font_unit|Mux7_rtl_0                 ; ROM  ;
++---------------------------------------------------------------------------------+-------------------------------------------------------------------------+------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------+
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |vga_kbd_txt_top|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|b_reg[8]             ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |vga_kbd_txt_top|kb_code:kb_code_unit|fifo:fifo_key_unit|r_ptr_reg[1]         ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |vga_kbd_txt_top|kb_code:kb_code_unit|fifo:fifo_key_unit|w_ptr_reg[1]         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; Yes        ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|cur_y_reg[0]                       ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|cur_x_reg[6]                       ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |vga_kbd_txt_top|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|n_reg[2]             ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |vga_kbd_txt_top|kb_code:kb_code_unit|ps2_rx:ps2_rx_unit|state_next           ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |vga_kbd_txt_top|kb_code:kb_code_unit|fifo:fifo_key_unit|Mux7                 ;
+; 8:1                ; 21 bits   ; 105 LEs       ; 42 LEs               ; 63 LEs                 ; No         ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|Selector18 ;
+; 8:1                ; 21 bits   ; 105 LEs       ; 42 LEs               ; 63 LEs                 ; No         ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|Selector9  ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|Selector1  ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|Selector3  ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit1|Selector0  ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |vga_kbd_txt_top|vga_kbd_txt:text_gen_unit|debounce:debounce_unit0|Selector0  ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 6 LEs                ; 10 LEs                 ; No         ; |vga_kbd_txt_top|kb_code:kb_code_unit|Selector4                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0|altsyncram_4ml1:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                         ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                          ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0|altsyncram_cp01:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                         ;
++---------------------------------+--------------------+------+------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                          ;
++---------------------------------+--------------------+------+------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                              ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; addr_width     ; 12    ; Signed Integer                                                                    ;
+; data_width     ; 7     ; Signed Integer                                                                    ;
++----------------+-------+-----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: kb_code:kb_code_unit ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; w_size         ; 2     ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: kb_code:kb_code_unit|fifo:fifo_key_unit ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; b              ; 8     ; Signed Integer                                              ;
+; w              ; 2     ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0 ;
++------------------------------------+----------------------+-------------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                    ;
++------------------------------------+----------------------+-------------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                                 ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                              ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                            ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                            ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                          ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                 ;
+; OPERATION_MODE                     ; BIDIR_DUAL_PORT      ; Untyped                                                                 ;
+; WIDTH_A                            ; 7                    ; Untyped                                                                 ;
+; WIDTHAD_A                          ; 12                   ; Untyped                                                                 ;
+; NUMWORDS_A                         ; 4096                 ; Untyped                                                                 ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                                 ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                                 ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                                 ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                 ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                 ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                 ;
+; WIDTH_B                            ; 7                    ; Untyped                                                                 ;
+; WIDTHAD_B                          ; 12                   ; Untyped                                                                 ;
+; NUMWORDS_B                         ; 4096                 ; Untyped                                                                 ;
+; INDATA_REG_B                       ; CLOCK0               ; Untyped                                                                 ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK0               ; Untyped                                                                 ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                 ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                                 ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                 ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                 ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                 ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                 ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                                 ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                                 ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                 ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                                 ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                                 ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                                 ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                                 ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                                 ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                                 ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                 ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                 ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                                                 ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                                 ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                                 ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                                 ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                                 ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                                 ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                                 ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                                 ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                                 ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                                 ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                 ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                                 ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                                                                 ;
+; CBXI_PARAMETER                     ; altsyncram_4ml1      ; Untyped                                                                 ;
++------------------------------------+----------------------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0 ;
++------------------------------------+--------------------------------------+-----------------------------------------+
+; Parameter Name                     ; Value                                ; Type                                    ;
++------------------------------------+--------------------------------------+-----------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                                    ; Untyped                                 ;
+; AUTO_CARRY_CHAINS                  ; ON                                   ; AUTO_CARRY                              ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                  ; IGNORE_CARRY                            ;
+; AUTO_CASCADE_CHAINS                ; ON                                   ; AUTO_CASCADE                            ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                  ; IGNORE_CASCADE                          ;
+; WIDTH_BYTEENA                      ; 1                                    ; Untyped                                 ;
+; OPERATION_MODE                     ; ROM                                  ; Untyped                                 ;
+; WIDTH_A                            ; 8                                    ; Untyped                                 ;
+; WIDTHAD_A                          ; 11                                   ; Untyped                                 ;
+; NUMWORDS_A                         ; 2048                                 ; Untyped                                 ;
+; OUTDATA_REG_A                      ; UNREGISTERED                         ; Untyped                                 ;
+; ADDRESS_ACLR_A                     ; NONE                                 ; Untyped                                 ;
+; OUTDATA_ACLR_A                     ; NONE                                 ; Untyped                                 ;
+; WRCONTROL_ACLR_A                   ; NONE                                 ; Untyped                                 ;
+; INDATA_ACLR_A                      ; NONE                                 ; Untyped                                 ;
+; BYTEENA_ACLR_A                     ; NONE                                 ; Untyped                                 ;
+; WIDTH_B                            ; 1                                    ; Untyped                                 ;
+; WIDTHAD_B                          ; 1                                    ; Untyped                                 ;
+; NUMWORDS_B                         ; 1                                    ; Untyped                                 ;
+; INDATA_REG_B                       ; CLOCK1                               ; Untyped                                 ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                               ; Untyped                                 ;
+; RDCONTROL_REG_B                    ; CLOCK1                               ; Untyped                                 ;
+; ADDRESS_REG_B                      ; CLOCK1                               ; Untyped                                 ;
+; OUTDATA_REG_B                      ; UNREGISTERED                         ; Untyped                                 ;
+; BYTEENA_REG_B                      ; CLOCK1                               ; Untyped                                 ;
+; INDATA_ACLR_B                      ; NONE                                 ; Untyped                                 ;
+; WRCONTROL_ACLR_B                   ; NONE                                 ; Untyped                                 ;
+; ADDRESS_ACLR_B                     ; NONE                                 ; Untyped                                 ;
+; OUTDATA_ACLR_B                     ; NONE                                 ; Untyped                                 ;
+; RDCONTROL_ACLR_B                   ; NONE                                 ; Untyped                                 ;
+; BYTEENA_ACLR_B                     ; NONE                                 ; Untyped                                 ;
+; WIDTH_BYTEENA_A                    ; 1                                    ; Untyped                                 ;
+; WIDTH_BYTEENA_B                    ; 1                                    ; Untyped                                 ;
+; RAM_BLOCK_TYPE                     ; AUTO                                 ; Untyped                                 ;
+; BYTE_SIZE                          ; 8                                    ; Untyped                                 ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                            ; Untyped                                 ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                 ; Untyped                                 ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                 ; Untyped                                 ;
+; INIT_FILE                          ; vga_kbd_txt.vga_kbd_txt_top0.rtl.mif ; Untyped                                 ;
+; INIT_FILE_LAYOUT                   ; PORT_A                               ; Untyped                                 ;
+; MAXIMUM_DEPTH                      ; 0                                    ; Untyped                                 ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL                               ; Untyped                                 ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                               ; Untyped                                 ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL                               ; Untyped                                 ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                               ; Untyped                                 ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                      ; Untyped                                 ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                      ; Untyped                                 ;
+; ENABLE_ECC                         ; FALSE                                ; Untyped                                 ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                ; Untyped                                 ;
+; WIDTH_ECCSTATUS                    ; 3                                    ; Untyped                                 ;
+; DEVICE_FAMILY                      ; Cyclone II                           ; Untyped                                 ;
+; CBXI_PARAMETER                     ; altsyncram_cp01                      ; Untyped                                 ;
++------------------------------------+--------------------------------------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                               ;
++-------------------------------------------+------------------------------------------------------------------------------------+
+; Name                                      ; Value                                                                              ;
++-------------------------------------------+------------------------------------------------------------------------------------+
+; Number of entity instances                ; 2                                                                                  ;
+; Entity Instance                           ; vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0 ;
+;     -- OPERATION_MODE                     ; BIDIR_DUAL_PORT                                                                    ;
+;     -- WIDTH_A                            ; 7                                                                                  ;
+;     -- NUMWORDS_A                         ; 4096                                                                               ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                       ;
+;     -- WIDTH_B                            ; 7                                                                                  ;
+;     -- NUMWORDS_B                         ; 4096                                                                               ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                             ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                       ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                               ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                          ;
+; Entity Instance                           ; vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0                 ;
+;     -- OPERATION_MODE                     ; ROM                                                                                ;
+;     -- WIDTH_A                            ; 8                                                                                  ;
+;     -- NUMWORDS_A                         ; 2048                                                                               ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                       ;
+;     -- WIDTH_B                            ; 1                                                                                  ;
+;     -- NUMWORDS_B                         ; 1                                                                                  ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                             ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                       ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                               ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                          ;
++-------------------------------------------+------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "key2ascii:key2a_unit"                                                                        ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; ascii_code[7] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "kb_code:kb_code_unit|fifo:fifo_key_unit"                                            ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; full ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Port Connectivity Checks: "kb_code:kb_code_unit|ps2_rx:ps2_rx_unit" ;
++-------+-------+----------+------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                  ;
++-------+-------+----------+------------------------------------------+
+; rx_en ; Input ; Info     ; Stuck at VCC                             ;
++-------+-------+----------+------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram"                        ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; dout_a ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "vga_kbd_txt:text_gen_unit|debounce:debounce_unit1"                                      ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; db_level ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; db_tick  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "vga_kbd_txt:text_gen_unit|debounce:debounce_unit0"                                      ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; db_level ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; db_tick  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:02     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Tue Jan 21 05:46:44 2020
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vga_kbd_txt -c vga_kbd_txt
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file altera_dual_port_ram_sync.vhd
+    Info (12022): Found design unit 1: altera_dual_port_ram_sync-beh_arch
+    Info (12023): Found entity 1: altera_dual_port_ram_sync
+Info (12021): Found 2 design units, including 1 entities, in source file font_rom.vhd
+    Info (12022): Found design unit 1: font_rom-arch
+    Info (12023): Found entity 1: font_rom
+Info (12021): Found 2 design units, including 1 entities, in source file vga_kbd_txt_top.vhd
+    Info (12022): Found design unit 1: vga_kbd_txt_top-arch
+    Info (12023): Found entity 1: vga_kbd_txt_top
+Info (12021): Found 2 design units, including 1 entities, in source file vga_sync.vhd
+    Info (12022): Found design unit 1: vga_sync-arch
+    Info (12023): Found entity 1: vga_sync
+Info (12021): Found 2 design units, including 1 entities, in source file vga_kbd_txt.vhd
+    Info (12022): Found design unit 1: vga_kbd_txt-arch
+    Info (12023): Found entity 1: vga_kbd_txt
+Info (12021): Found 2 design units, including 1 entities, in source file fifo.vhd
+    Info (12022): Found design unit 1: fifo-arch
+    Info (12023): Found entity 1: fifo
+Info (12021): Found 2 design units, including 1 entities, in source file kb_code.vhd
+    Info (12022): Found design unit 1: kb_code-arch
+    Info (12023): Found entity 1: kb_code
+Info (12021): Found 2 design units, including 1 entities, in source file ps2_rx.vhd
+    Info (12022): Found design unit 1: ps2_rx-arch
+    Info (12023): Found entity 1: ps2_rx
+Info (12021): Found 2 design units, including 1 entities, in source file key2ascii.vhd
+    Info (12022): Found design unit 1: key2ascii-arch
+    Info (12023): Found entity 1: key2ascii
+Info (12021): Found 2 design units, including 1 entities, in source file debounce.vhd
+    Info (12022): Found design unit 1: debounce-fsmd_arch
+    Info (12023): Found entity 1: debounce
+Info (12127): Elaborating entity "vga_kbd_txt_top" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at vga_kbd_txt_top.vhd(14): used implicit default value for signal "UART_TXD" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Info (12128): Elaborating entity "vga_sync" for hierarchy "vga_sync:vga_sync_unit"
+Info (12128): Elaborating entity "vga_kbd_txt" for hierarchy "vga_kbd_txt:text_gen_unit"
+Warning (10036): Verilog HDL or VHDL warning at vga_kbd_txt.vhd(37): object "move_x_tick" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at vga_kbd_txt.vhd(37): object "move_y_tick" assigned a value but never read
+Info (12128): Elaborating entity "debounce" for hierarchy "vga_kbd_txt:text_gen_unit|debounce:debounce_unit0"
+Info (12128): Elaborating entity "font_rom" for hierarchy "vga_kbd_txt:text_gen_unit|font_rom:font_unit"
+Info (12128): Elaborating entity "altera_dual_port_ram_sync" for hierarchy "vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram"
+Info (12129): Elaborating entity "kb_code" using architecture "A:arch" for hierarchy "kb_code:kb_code_unit"
+Info (12129): Elaborating entity "ps2_rx" using architecture "A:arch" for hierarchy "kb_code:kb_code_unit|ps2_rx:ps2_rx_unit"
+Info (12129): Elaborating entity "fifo" using architecture "A:arch" for hierarchy "kb_code:kb_code_unit|fifo:fifo_key_unit"
+Info (12129): Elaborating entity "key2ascii" using architecture "A:arch" for hierarchy "key2ascii:key2a_unit"
+Warning (276020): Inferred RAM node "vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info (19000): Inferred 2 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to BIDIR_DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 7
+        Info (286033): Parameter WIDTH_B set to 7
+        Info (286033): Parameter WIDTHAD_A set to 12
+        Info (286033): Parameter WIDTHAD_B set to 12
+        Info (286033): Parameter NUMWORDS_A set to 4096
+        Info (286033): Parameter NUMWORDS_B set to 4096
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_REG_B set to CLOCK0
+        Info (286033): Parameter WRCONTROL_WRADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+    Info (276031): Inferred altsyncram megafunction from the following design logic: "vga_kbd_txt:text_gen_unit|font_rom:font_unit|Mux7_rtl_0"
+        Info (286033): Parameter OPERATION_MODE set to ROM
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 11
+        Info (286033): Parameter NUMWORDS_A set to 2048
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter RAM_BLOCK_TYPE set to AUTO
+        Info (286033): Parameter INIT_FILE set to vga_kbd_txt.vga_kbd_txt_top0.rtl.mif
+Info (12130): Elaborated megafunction instantiation "vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "vga_kbd_txt:text_gen_unit|altera_dual_port_ram_sync:video_ram|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "BIDIR_DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "7"
+    Info (12134): Parameter "WIDTH_B" = "7"
+    Info (12134): Parameter "WIDTHAD_A" = "12"
+    Info (12134): Parameter "WIDTHAD_B" = "12"
+    Info (12134): Parameter "NUMWORDS_A" = "4096"
+    Info (12134): Parameter "NUMWORDS_B" = "4096"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_REG_B" = "CLOCK0"
+    Info (12134): Parameter "WRCONTROL_WRADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_4ml1.tdf
+    Info (12023): Found entity 1: altsyncram_4ml1
+Info (12130): Elaborated megafunction instantiation "vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0"
+Info (12133): Instantiated megafunction "vga_kbd_txt:text_gen_unit|font_rom:font_unit|altsyncram:Mux7_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "ROM"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "11"
+    Info (12134): Parameter "NUMWORDS_A" = "2048"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "RAM_BLOCK_TYPE" = "AUTO"
+    Info (12134): Parameter "INIT_FILE" = "vga_kbd_txt.vga_kbd_txt_top0.rtl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_cp01.tdf
+    Info (12023): Found entity 1: altsyncram_cp01
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "UART_TXD" is stuck at GND
+Info (17049): 52 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 10 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[3]"
+    Warning (15610): No output dependent on input pin "SW[0]"
+    Warning (15610): No output dependent on input pin "SW[1]"
+    Warning (15610): No output dependent on input pin "SW[2]"
+    Warning (15610): No output dependent on input pin "SW[3]"
+    Warning (15610): No output dependent on input pin "SW[4]"
+    Warning (15610): No output dependent on input pin "SW[5]"
+    Warning (15610): No output dependent on input pin "SW[6]"
+    Warning (15610): No output dependent on input pin "KEY[2]"
+    Warning (15610): No output dependent on input pin "KEY[1]"
+Info (21057): Implemented 447 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 14 input pins
+    Info (21059): Implemented 12 output pins
+    Info (21061): Implemented 406 logic cells
+    Info (21064): Implemented 15 RAM segments
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 18 warnings
+    Info: Peak virtual memory: 4663 megabytes
+    Info: Processing ended: Tue Jan 21 05:46:50 2020
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:05
+
+
